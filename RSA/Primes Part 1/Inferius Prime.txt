@@ -1,0 +1,23 @@
+from sage.all import *
+from Crypto.Util.number import bytes_to_long, long_to_bytes
+
+def pc(a,b,c):
+    R=IntegerModRing(c)
+    x=R(a)
+    return x**b
+
+n = 742449129124467073921545687640895127535705902454369756401331
+e = 3
+ct = 39207274348578481322317340648475596807303160111338236677373
+
+p = 752708788837165590355094155871
+q = 986369682585281993933185289261
+phi_n = (p-1)*(q-1) 
+R = IntegerModRing(phi_n)
+d = R(1)/R(e)
+
+m = pc(ct,d,n)
+print(long_to_bytes(Integer(m)))
+
+
+FLAG: crypto{N33d_b1g_pR1m35}
